@@ -1,0 +1,22 @@
+{
+  "out": "./docs/",
+  "includes": "./src/",
+  "exclude": [
+    "./src/__tests__/*",
+    "**/__tests__/**/*",
+    "**/__test_utils__/**/*",
+    "**/__fixtures__/**/*",
+    "**/testsuite/**/*",
+    "./src/*.test.ts"
+  ],
+  "excludeExternals": true,
+  "excludePrivate": true,
+  "navigationLinks": {
+    "Home": "https://kjur.github.io/typepki-oiddb/",
+    "Issue": "https://github.com/kjur/typepki-oiddb/issues",
+    "GitHub": "https://github.com/kjur/typepki-oiddb",
+    "NPM": "https://www.npmjs.com/package/typepki-oiddb",
+    "TypePKI": "https://kjur.github.io/typepki",
+    "jsrsasign": "https://kjur.github.io/jsrsasign"
+  }
+}

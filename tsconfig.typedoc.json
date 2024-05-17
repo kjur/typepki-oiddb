@@ -1,0 +1,7 @@
+{
+  "extends": ["./tsconfig.json", "@tsconfig/node17/tsconfig.json"],
+  "exclude": ["./_work", "./_src.bak/", "./src/*.test.mts"],
+  "compilerOptions": {
+    "lib": ["dom"]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "extends": ["./tsconfig.build.base.json", "@tsconfig/node17/tsconfig.json"],
+  "compilerOptions": {
+    "outDir": "./dist/import/",
+    "lib": ["dom"]
+  },
+  "include": ["./src/index.mts"]
+}
