@@ -116,6 +116,15 @@ export class OIDDataBase {
   /**
    * Register OID data set to a singleton object
    * @param datasetList - array of OIDDataSet
+   * @description
+   * This method will add OID definitions to object internal
+   * database by the list of {@link OIDDataSet}.
+   * When the OIDDataSet.setname already registered, 
+   * its importing will be skipped.
+   * Also when the registering OID is already registered,
+   * its OID registration is skipped. 
+   * This means existing OID definition will not
+   * be overwritten.
    * @example
    * import { OIDDataBase, OIDSET_CRYPTO, OIDSET_X509 } from "typepki-oiddb";
    * const oiddb = OIDDatabase.instance;
