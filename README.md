@@ -43,9 +43,9 @@ When you want to add some OID name definitions, you can do it like this:
 ```ts
 const MYOIDSET: OIDDataSet = {
   setname: "myoid",
-  oidtoname: {
-    "1.2.3.4.5.1": "my-oid-one",
-    "1.2.3.4.5.2": "my-oid-two",
+  nametooid: {
+    "my-oid-one": "1.2.3.4.5.1",
+    "my-oid-two": "1.2.3.4.5.2",
   },
 };
 oiddb.regist([MYOIDSET]);
