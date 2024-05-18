@@ -1,6 +1,6 @@
 {
   "name": "typepki-oiddb",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Kenji Urushima <kenji.urushima@gmail.com>",
   "description": "Object Identifier (OID) database for TypePKI library (beta)",
   "homepage": "https://kjur.github.io/typepki-oiddb",
