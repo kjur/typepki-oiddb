@@ -2,7 +2,7 @@
  * Singleton class for OID(object identifier) name database
  * @example
  * import { OIDDataBase, OIDSET_CRYPTO, OIDSET_X509 } from "typepki-oiddb";
- * const oiddb = OIDDatabase.instance; // singleton object
+ * const oiddb = OIDDataBase.instance; // singleton object
  * oiddb.regist([OIDSET_CRYPTO, OIDSET_X509]);
  * oiddb.oidtoname("2.5.29.15") -> "keyUsage"
  * oiddb.nametooid("P-521") -> "1.3.132.0.35"
@@ -268,16 +268,36 @@ Other COMMON
 Other less COMMON
  postalAddress
  street
-
  */
 export const OIDSET_X509: OIDDataSet = {
   setname: "x509",
   nametooid: {
     // DN attribute types
     "commonName": "2.5.4.3",
+    "serialNumber": "2.5.4.5",
     "countryName": "2.5.4.6",
+    "localityName": "2.5.4.7",
+    "stateOrProvinceName": "2.5.4.8",
+    "streetAddress": "2.5.4.9",
     "organizationName": "2.5.4.10",
+    "organizationalUnitName": "2.5.4.11",
+    "domainComponent": "0.9.2342.19200300.100.1.25",
+    "userId": "0.9.2342.19200300.100.1.1",
+    // other AttributeType name string
+    "surname": "2.5.4.4",
+    "givenName": "2.5.4.42",
+    "title": "2.5.4.12",
+    "distinguishedName": "2.5.4.49",
+    "emailAddress": "1.2.840.113549.1.9.1",
+    // other AttributeType name string (no short name)
+    "description": "2.5.4.13",
+    "businessCategory": "2.5.4.15",
+    "postalCode": "2.5.4.17",
+    "uniqueIdentifier": "2.5.4.45",
     "organizationIdentifier": "2.5.4.97",
+    "jurisdictionOfIncorporationL": "1.3.6.1.4.1.311.60.2.1.1",
+    "jurisdictionOfIncorporationSP": "1.3.6.1.4.1.311.60.2.1.2",
+    "jurisdictionOfIncorporationC": "1.3.6.1.4.1.311.60.2.1.3",
     // RFC 5280 standard extensions
     "subjectKeyIdentifier": "2.5.29.14",
     "keyUsage": "2.5.29.15", 
@@ -297,9 +317,25 @@ export const OIDSET_X509: OIDDataSet = {
     "cabfBrDomainValidated": "2.23.140.1.2.1", 
   },
   shorttoname: {
+    // RFC 4514 AttributeType name string (MUST recognized)
     "CN": "commonName",
-    "OU": "organizationName",
+    "L": "localityName",
+    "ST": "stateOrProvinceName",
+    "O": "organizationName",
+    "OU": "organizationalUnitName",
     "C": "countryName",
+    "STREET": "streetAddress",
+    "DC": "domainComponent",
+    "UID": "userId",
+    // other AttributeType name string
+    // http://blog.livedoor.jp/k_urushima/archives/656114.html
+    "SN": "surname",
+    "T": "title",
+    "GN": "givenName",
+    "DN": "distinguishedName",
+    "E": "emailAddress", // emailAddress in MS.NET or Bouncy
   },
 };
+
+
 

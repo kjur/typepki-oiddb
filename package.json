@@ -1,23 +1,25 @@
 {
   "name": "typepki-oiddb",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "Kenji Urushima <kenji.urushima@gmail.com>",
   "description": "Object Identifier (OID) database for TypePKI library (beta)",
   "homepage": "https://kjur.github.io/typepki-oiddb",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kjur/typepki-oiddb.git"
+    "url": "git+https://github.com/kjur/typepki-oiddb.git"
   },
   "bugs": {
     "url": "https://github.com/kjur/typepki-oiddb/issues"
   },
   "keywords": [
-    "cryptography",
-    "webcryptoapi",
-    "publickey",
-    "hash",
-    "kdf",
-    "hmac"
+    "oid",
+    "x500",
+    "x509",
+    "asn1",
+    "der",
+    "object",
+    "identifier",
+    "database"
   ],
   "license": "MIT",
   "scripts": {
