@@ -340,6 +340,9 @@ export const OIDSET_X509: OIDDataSet = {
     "anyExtendedKeyUsage": "2.5.29.37.0", 
     "freshestCRL": "2.5.29.46", 
     "inhibitAnyPolicy": "2.5.29.54", 
+    // other RFC 5280 related
+    "cps": "1.3.6.1.5.5.7.2.1",
+    "unotice": "1.3.6.1.5.5.7.2.2",
     // NON RFC 5280 standards but quite common
     "authorityInfoAccess": "1.3.6.1.5.5.7.1.1", 
     "subjectInfoAccess": "1.3.6.1.5.5.7.1.11", 
@@ -375,6 +378,4 @@ export const OIDSET_X509: OIDDataSet = {
     "E": "emailAddress", // emailAddress in MS.NET or Bouncy
   },
 };
-
-
 
