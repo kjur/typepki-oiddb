@@ -50,19 +50,25 @@ export class OIDDataBase {
   /**
    * convert OID value to OID name defined in internal database
    * @param oid - OID value (ex. "1.2.3.4")
+   * @param useUndef - flag to return undefined when it is undefined in the database
    * @return OID name. (ex. "countryName"). Return undefined if not defined.
+   * @see {@link nametooid}
    * @example
    * oiddb.oidtoname("2.5.29.15") -> "keyUsage"
-   * oiddb.oidtoname("1.2.3.4") -> undefined
+   * oiddb.oidtoname("1.2.3.4") -> "1.2.3.4"
+   * oiddb.oidtoname("1.2.3.4", true) -> undefined
    */
-  oidtoname(oid: string): string {
-    return this._dbOID2NAME[oid];
+  oidtoname(oid: string, useUndef?: boolean): string | undefined {
+    const name = this._dbOID2NAME[oid];
+    if (name !== undefined) return name;
+    return (useUndef) ? undefined : oid;
   }
 
   /**
    * convert OID name to OID value defined in internal database
    * @param name - OID name. (ex. "countryName").
    * @return OID value (ex. "1.2.3.4"). Return undefined if not defined.
+   * @see {@link oidtoname}
    * @example
    * oiddb.nametooid("keyUsage") -> "2.5.29.15"
    * oiddb.nametooid("foo-bar-") -> undefined // not registered
@@ -76,44 +82,55 @@ export class OIDDataBase {
   /**
    * convert short attribute type name to OID value defined in internal database
    * @param short - short attribute type name for distinguished name. (ex. "CN").
+   * @param useUndef - flag to return undefined when it is undefined in the database
    * @return OID name (ex. "commonName"). Return undefined if not defined.
+   * @see {@link nametoshort}
    * @example
    * oiddb.shorttoname("CN") -> "commonName"
    * oiddb.shorttoname("FOO") -> undefined // not registered
+   * oiddb.shorttoname("FOO", true) -> "FOO" // not registered
    */
-  shorttoname(short: string): string {
-    return this._dbSHORT2NAME[short];
+  shorttoname(short: string, useUndef?: boolean): string | undefined {
+    const name = this._dbSHORT2NAME[short];
+    if (name !== undefined) return name;
+    return (useUndef) ? undefined : short;
   }
 
   /**
    * convert OID name to short attribute type name defined in internal database
    * @param name - OID name (ex. "commonName").
+   * @param useUndef - flag to return undefined when it is undefined in the database
    * @return short attribute type name for distinguished name. (ex. "CN"). Return OID name if not defined.
+   * @see {@link shorttoname}
    * @example
    * oiddb.nametoshort("commonName") -> "CN"
    * oiddb.nametoshort("serialNumber") -> "serialNumber" // for undefined short name
+   * oiddb.nametoshort("serialNumber", true) -> undefined // for undefined short name
    */
-  nametoshort(name: string): string {
-    return this._dbNAME2SHORT[name];
+  nametoshort(name: string, useUndef?: boolean): string | undefined {
+    const short = this._dbNAME2SHORT[name];
+    if (short !== undefined) return short;
+    return (useUndef) ? undefined : name;
   }
 
   /**
    * convert OID value to short attribute type name defined in internal database
    * @param oid - OID value (ex. "2.5.4.6").
+   * @param useUndef - flag to return undefined when it is undefined in the database
    * @return short attribute type name for distinguished name. (ex. "C"). Return OID name if not defined.
+   * @see {@link shorttooid}
    * @example
    * oiddb.oidtoshort("2.5.4.6") -> "CN"
    * oiddb.oidtoshort("2.5.4.97") -> "organizationIdentifier" // OID defined but short name not defined
    * oiddb.oidtoshort("1.2.3.4") -> "1.2.3.4" // for undefined short name nor OID name
+   * oiddb.oidtoshort("1.2.3.4", true) -> undefined
    */
-  oidtoshort(oid: string): string {
+  oidtoshort(oid: string, useUndef?: boolean): string | undefined {
     const name = this._dbOID2NAME[oid];
-    if (name == undefined) return oid;
+    if (name == undefined) return (useUndef) ? undefined : oid;
     const short = this._dbNAME2SHORT[name];
-    if (short == undefined) return name;
-    return short;
+    return (short == undefined) ? name : short;
   }
-
   
   shorttooid(short: string): string {
     const name = this._dbSHORT2NAME[short];
@@ -299,17 +316,39 @@ export const OIDSET_X509: OIDDataSet = {
     "jurisdictionOfIncorporationSP": "1.3.6.1.4.1.311.60.2.1.2",
     "jurisdictionOfIncorporationC": "1.3.6.1.4.1.311.60.2.1.3",
     // RFC 5280 standard extensions
+    "subjectDirectoryAttributes": "2.5.29.9",
     "subjectKeyIdentifier": "2.5.29.14",
     "keyUsage": "2.5.29.15", 
+    "privateKeyUsagePeriod": "2.5.29.16",
     "subjectAltName": "2.5.29.17",
+    "issuerAltName": "2.5.29.18",
     "basicConstraints": "2.5.29.19",
+    "cRLNumber": "2.5.29.20",
+    "cRLReason": "2.5.29.21",
+    "holdInstructionCode": "2.5.29.23",
+    "deltaCRLIndicator": "2.5.29.27",
+    "issuerDistributionPoint": "2.5.29.28",
+    "certificateIssuer": "2.5.29.29",
+    "nameConstraints": "2.5.29.30",
+    "cRLDistributionPoints": "2.5.29.31",
     "certificatePolicies": "2.5.29.32",
+    "anyPolicy": "2.5.29.32.0",
+    "policyMappings": "2.5.29.33",
     "authorityKeyIdentifier": "2.5.29.35",
+    "policyConstraints": "2.5.29.36",
     "extKeyUsage": "2.5.29.37", 
+    "anyExtendedKeyUsage": "2.5.29.37.0", 
+    "freshestCRL": "2.5.29.46", 
+    "inhibitAnyPolicy": "2.5.29.54", 
     // NON RFC 5280 standards but quite common
     "authorityInfoAccess": "1.3.6.1.5.5.7.1.1", 
+    "subjectInfoAccess": "1.3.6.1.5.5.7.1.11", 
     "serverAuth": "1.3.6.1.5.5.7.3.1", 
     "clientAuth": "1.3.6.1.5.5.7.3.2", 
+    "codeSigning": "1.3.6.1.5.5.7.3.3", 
+    "emailProtection": "1.3.6.1.5.5.7.3.4", 
+    "timeStamping": "1.3.6.1.5.5.7.3.8", 
+    "ocspSigning": "1.3.6.1.5.5.7.3.9", 
     "ocsp": "1.3.6.1.5.5.7.48.1", 
     "caIssuers": "1.3.6.1.5.5.7.48.2", 
     // Others

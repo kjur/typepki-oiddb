@@ -4,11 +4,24 @@ import { OIDDataBase, OIDSET_CRYPTO, OIDSET_X509 } from "./index.mts";
 const oiddb = OIDDataBase.instance;
 oiddb.regist([OIDSET_CRYPTO, OIDSET_X509]);
 
-test("OIDDataBase", () => {
+test("OIDDataBase.oidtoname", () => {
   expect(oiddb.oidtoname("2.5.29.15")).toBe("keyUsage");
+  expect(oiddb.oidtoname("1.2.3.4")).toBe("1.2.3.4");
+  expect(oiddb.oidtoname("1.2.3.4", true)).toBe(undefined);
+});
+
+test("OIDDataBase.oidtoshort", () => {
+  expect(oiddb.oidtoshort("2.5.4.6")).toBe("C");
+  expect(oiddb.oidtoshort("2.5.4.6", true)).toBe("C");
+  expect(oiddb.oidtoshort("2.5.29.15")).toBe("keyUsage");
+  expect(oiddb.oidtoshort("2.5.29.15", true)).toBe("keyUsage");
+  expect(oiddb.oidtoshort("1.2.3.4")).toBe("1.2.3.4");
+  expect(oiddb.oidtoshort("1.2.3.4", true)).toBe(undefined);
+});
+
+test("OIDDataBase", () => {
   expect(oiddb.shorttoname("CN")).toBe("commonName");
   expect(oiddb.nametoshort("commonName")).toBe("CN");
-  expect(oiddb.oidtoshort("2.5.4.6")).toBe("C");
   expect(oiddb.shorttooid("C")).toBe("2.5.4.6");
 });
 
